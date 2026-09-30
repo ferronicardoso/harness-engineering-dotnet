@@ -1,0 +1,8 @@
+<Project>
+
+  <!-- O compilador não cria o diretório de destino do ErrorLog. -->
+  <Target Name="CreateSarifDirectory" BeforeTargets="CoreCompile">
+    <MakeDir Directories="$(MSBuildThisFileDirectory)artifacts/sarif" />
+  </Target>
+
+</Project>
