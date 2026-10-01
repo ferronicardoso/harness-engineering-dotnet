@@ -2,11 +2,22 @@
 
 Repositório de referência da série de artigos **Harness Engineering para .NET**. Cada artigo corresponde a uma tag neste repositório, permitindo acompanhar a evolução do projeto por diff.
 
-A aplicação é uma API de reembolso de despesas em ASP.NET Core, organizada em camadas (Clean Architecture). O domínio existe como pano de fundo: o foco da série é o harness que envolve o agente de codificação — rules, skills, sensores, hooks e avaliação.
+A aplicação é uma API de reembolso de despesas em ASP.NET Core, organizada em camadas (Clean Architecture). O domínio existe como pano de fundo: o foco da série é o harness que envolve o agente de codificação.
 
-## Estado atual
+## Artigos e tags
 
-Baseline (estado zero): solução em camadas, sem regras de negócio implementadas e sem harness configurado. As features são construídas ao longo da série via Spec-Driven Development.
+| Tag | Conteúdo | Artigo |
+| --- | --- | --- |
+| `v0-baseline` | Estado zero: solução em camadas, sem regras de negócio e sem harness | — |
+| `artigo-01` | Analyzers como erro, políticas de API, estilo no build, SARIF, `AGENTS.md` e CI | [Harness engineering em .NET: o compilador como seu melhor sensor - Parte 1](https://csharpbrasil.com.br/harness-engineering-em-dotnet-parte-1) |
+
+Para acompanhar um artigo, parta da tag anterior a ele:
+
+```powershell
+git switch -c meu-harness v0-baseline
+```
+
+O `main` contém sempre o estado do artigo mais recente.
 
 ## Estrutura
 
@@ -35,3 +46,7 @@ dotnet run --project src/Reimbursements.Api
 ```
 
 As credenciais em `compose.yaml` e `appsettings.Development.json` são exclusivas do banco local em container e não devem ser reutilizadas em outro ambiente.
+
+## Licença
+
+[MIT](LICENSE)

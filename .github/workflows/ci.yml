@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore Reimbursements.slnx
+
+      - name: Build
+        run: dotnet build Reimbursements.slnx --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test Reimbursements.slnx --no-build --configuration Release
+
+      - name: Format
+        run: dotnet format Reimbursements.slnx --verify-no-changes --no-restore
+
+      - name: Publicar SARIF
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: sarif
+          path: artifacts/sarif/
+          if-no-files-found: warn
+          retention-days: 7
